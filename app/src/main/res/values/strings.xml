@@ -19,4 +19,6 @@
     <string name="key_plus">+</string>
     <string name="key_minus">-</string>
     <string name="key_equals">=</string>
+    <string name="number_field_hint">Ввод значений</string>
+    <string name="result_field_hint">Результат</string>
 </resources>
