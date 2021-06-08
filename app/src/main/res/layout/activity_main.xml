@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:textSize="40sp"
+        android:textSize="@dimen/text_size_vert"
         android:hint="@string/number_field_hint"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/textview_margin_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/result_field"
 
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_gray"
-        android:textSize="40sp"
+        android:textSize="@dimen/text_size_vert"
         android:hint="@string/result_field_hint"
         app:layout_constraintTop_toBottomOf="@id/number_field"
         />
@@ -35,7 +35,7 @@
         layout="@layout/activity_keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="@dimen/keyboard_margin_bottom_vert"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 
