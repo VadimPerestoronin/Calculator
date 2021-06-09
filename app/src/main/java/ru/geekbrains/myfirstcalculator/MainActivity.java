@@ -4,31 +4,42 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.Serializable;
-import java.text.BreakIterator;
 
 
 public class MainActivity extends AppCompatActivity implements Serializable {
 
     private final static String ARG_CNT = "ARG_CNT";
     private TextView numberView;
-    private TextView resultView;
     private Calculate calculate;
+    public final static String KEY_APP_THEME = "KEY_APP_THEME";
+    private ThemeStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        storage = new ThemeStorage(this);
+
+        setTheme(storage.getTheme().getResource());
         setContentView(R.layout.activity_main);
 
-        numberView = findViewById(R.id.number_field);
-        resultView = findViewById(R.id.result_field);
+        String value = getIntent().getStringExtra(KEY_APP_THEME);
+        if (KEY_APP_THEME == "dark") {
+            storage.setTheme(AppTheme.CUSTOM);
+        } else {
+            storage.setTheme(AppTheme.DEFAULT);
+        }
 
-        int[] numberIds = new int[] {
+
+        numberView = findViewById(R.id.number_field);
+
+
+        int[] numberIds = new int[]{
                 R.id.key_0,
                 R.id.key_1,
                 R.id.key_2,
@@ -38,10 +49,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 R.id.key_6,
                 R.id.key_7,
                 R.id.key_8,
-                R.id.key_9
+                R.id.key_9,
+                R.id.key_dot
         };
 
-        int[] actionsIds = new int[] {
+        int[] actionsIds = new int[]{
                 R.id.key_plus,
                 R.id.key_minus,
                 R.id.key_multiplication,
@@ -93,117 +105,14 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
 
-        
 
-/*        findViewById(R.id.key_0).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_setup).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "0");
+            public void onClick(View view) {
+                Intent runSetup = new Intent(MainActivity.this, SetupActivity.class);
+                startActivity(runSetup);
             }
         });
-        findViewById(R.id.key_1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "1");
-            }
-        });
-        findViewById(R.id.key_2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "2");
-            }
-        });
-        findViewById(R.id.key_3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "3");
-            }
-        });
-        findViewById(R.id.key_4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "4");
-            }
-        });
-        findViewById(R.id.key_5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "5");
-            }
-        });
-        findViewById(R.id.key_6).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "6");
-            }
-        });
-        findViewById(R.id.key_7).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "7");
-            }
-        });
-        findViewById(R.id.key_8).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "8");
-            }
-        });
-        findViewById(R.id.key_9).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "9");
-            }
-        });
-        findViewById(R.id.key_dot).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + ".");
-            }
-        });
-        findViewById(R.id.key_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText("");
-            }
-        });
-        findViewById(R.id.key_plus).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "+");
-            }
-        });
-        findViewById(R.id.key_minus).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "-");
-            }
-        });
-        findViewById(R.id.key_multiplication).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "*");
-            }
-        });
-        findViewById(R.id.key_division).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "/");
-            }
-        });
-        findViewById(R.id.key_percent).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberView.setText(numberView.getText().toString() + "%");
-            }
-        });
-        findViewById(R.id.key_backspace).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String enteredNumbers = numberView.getText().toString();
-                numberView.setText(enteredNumbers.substring(0, enteredNumbers.length() -1));
-            }
-        });*/
 
 
     }

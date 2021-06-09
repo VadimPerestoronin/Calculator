@@ -13,6 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
+
     </style>
 
+    <style name="Theme.MyFirstCalculator.Dark">
+        <item name="colorPrimary">@color/extra_dark_grey</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:background">@color/extra_dark_grey</item>
+
+
+    </style>
 </resources>

@@ -2,9 +2,11 @@
 <resources>
     <dimen name="text_size_vert">40sp</dimen>
     <dimen name="text_size_land">30sp</dimen>
-    <dimen name="keyboard_margin_bottom_land">10dp</dimen>
+    <dimen name="keyboard_margin_bottom_land">2dp</dimen>
     <dimen name="keyboard_margin_bottom_vert">40dp</dimen>
     <dimen name="btn_radius">20dp</dimen>
     <dimen name="btn_text_size">20sp</dimen>
     <dimen name="textview_margin_top">40dp</dimen>
+    <dimen name="button_back_margin">50dp</dimen>
+    <dimen name="button_setup_height_land">50dp</dimen>
 </resources>
