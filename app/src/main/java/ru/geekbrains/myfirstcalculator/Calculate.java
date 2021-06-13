@@ -1,20 +1,20 @@
 package ru.geekbrains.myfirstcalculator;
 
+
+
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.BreakIterator;
 
 public class Calculate extends AppCompatActivity implements Parcelable {
 
 
-    private int firstArg;
-    private int secondArg;
+    private double firstArg;
+    private double secondArg;
+
 
     private StringBuilder inputStr = new StringBuilder();
     String strTemp = new String();
@@ -80,6 +80,9 @@ public class Calculate extends AppCompatActivity implements Parcelable {
                 case R.id.key_9:
                     inputStr.append("9");
                     break;
+                case R.id.key_dot:
+                    inputStr.append(".");
+                    break;
             }
         }
 
@@ -87,7 +90,7 @@ public class Calculate extends AppCompatActivity implements Parcelable {
 
     public void onActionPressed(int actionId) {
         if (actionId == R.id.key_equals && state == State.secondArgInput && inputStr.length() > 0) {
-            secondArg = Integer.parseInt(inputStr.toString());
+            secondArg = Double.parseDouble(inputStr.toString());
             state = State.resultShow;
             inputStr.setLength(0);
             switch (actionSelected) {
@@ -106,7 +109,7 @@ public class Calculate extends AppCompatActivity implements Parcelable {
             }
 
         } else if (inputStr.length() > 0 && state == State.firstArgInput && actionId != R.id.key_equals) {
-            firstArg = Integer.parseInt(inputStr.toString());
+            firstArg = Double.parseDouble(inputStr.toString());
             state = State.operationSelected;
             actionSelected = actionId;
         }
@@ -159,13 +162,16 @@ public class Calculate extends AppCompatActivity implements Parcelable {
     }
 
     public void backspace() {
-        inputStr.delete(inputStr.length()-1, inputStr.length());
+        if (inputStr.length() != 0){
+            inputStr.delete(inputStr.length()-1, inputStr.length());
+        }
+
     }
 
     protected Calculate(Parcel in) {
 
-        firstArg = in.readInt();
-        secondArg = in.readInt();
+        firstArg = in.readDouble();
+        secondArg = in.readDouble();
         actionSelected = in.readInt();
         strTemp = inputStr.toString();
         strTemp = in.readString();
@@ -192,8 +198,8 @@ public class Calculate extends AppCompatActivity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(firstArg);
-        dest.writeInt(secondArg);
+        dest.writeDouble(firstArg);
+        dest.writeDouble(secondArg);
         dest.writeInt(actionSelected);
         dest.writeString(strTemp);
     };

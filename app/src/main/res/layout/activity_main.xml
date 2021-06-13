@@ -5,31 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/number_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/light_gray"
         android:textSize="@dimen/text_size_vert"
         android:hint="@string/number_field_hint"
         android:layout_marginTop="@dimen/textview_margin_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/result_field"
-
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/result_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_gray"
-        android:textSize="@dimen/text_size_vert"
-        android:hint="@string/result_field_hint"
-        app:layout_constraintTop_toBottomOf="@id/number_field"
-        />
 
     <include
         layout="@layout/activity_keyboard"

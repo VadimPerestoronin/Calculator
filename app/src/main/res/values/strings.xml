@@ -21,4 +21,9 @@
     <string name="key_equals">=</string>
     <string name="number_field_hint">Ввод значений</string>
     <string name="result_field_hint">Результат</string>
+    <string name="setup_text">Choose your theme</string>
+    <string name="button_light_theme">Light</string>
+    <string name="button_dark_theme">Dark</string>
+    <string name="button_back_to_calculator">Back to calculator</string>
+    <string name="button_setup">Settings</string>
 </resources>
